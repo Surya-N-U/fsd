@@ -1,0 +1,33 @@
+{% extends "plants/base.html" %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h1 class="mb-4">Search Results</h1>
+    <form method="get" action="{% url 'H_backend:search_images' %}" class="form-inline mb-4">
+        <input type="text" name="query" class="form-control mr-2" placeholder="Search..." value="{{ request.GET.query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <div class="row">
+        {% for plant in results %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ plant.image.url }}" class="card-img-top" alt="{{ plant.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ plant.name }}</h5>
+                        <p class="card-text"><strong>Scientific Name:</strong> {{ plant.scientific_name }}</p>
+                        <p class="card-text"><strong>Family:</strong> {{ plant.family }}</p>
+                        <p class="card-text"><strong>Genus:</strong> {{ plant.genus }}</p>
+                        <p class="card-text"><strong>Species:</strong> {{ plant.species }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ plant.location }}</p>
+                        <p class="card-text"><strong>Collection Date:</strong> {{ plant.collection_date }}</p>
+                        <p class="card-text">{{ plant.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
