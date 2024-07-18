@@ -14,3 +14,13 @@ class Plant(models.Model):
 
     def __str__(self):
         return self.name
+    
+class NewPlant(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images255/')
+    description = models.TextField()
+    family = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name

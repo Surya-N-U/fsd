@@ -1,21 +1,46 @@
 from django.shortcuts import render, redirect
-from .models import Plant
-from .forms import PlantForm
+from .models import Plant, NewPlant
+from .forms import PlantForm, NewPlantForm
 from django.db.models import Count
 from .forms import ImageUploadForm
-from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
-import numpy as np
+from django.contrib.auth.decorators import login_required
+# from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
+# from tensorflow.keras.preprocessing.image import load_img, img_to_array
+# import numpy as np
+
+def home(request):
+    return render(request, 'index.html')
+
+def algae(request):
+    algae_items = NewPlant.objects.filter(type='Algae')
+    return render(request, 'algae.html', {'algae_items': algae_items})
+
+def gymnosperms(request):
+    gymno_items = NewPlant.objects.filter(type='Gymnosperms')
+    return render(request, 'gymnosperms.html', {'gymno_items': gymno_items})
+
+def angiosperms(request):
+    angio_items = NewPlant.objects.filter(type='Angiosperms')
+    return render(request, 'angiosperms.html', {'angio_items': angio_items})
+
+def bryophytes(request):
+    return render(request, 'bryophytes.html')
+
+def pteridophytes(request):
+    pteri_items = NewPlant.objects.filter(type='Pteridophytes')
+    return render(request, 'pteridophytes.html', {'pteri_items': pteri_items})
 
 
+
+@login_required
 def upload_image(request):
     if request.method == 'POST':
-        form = PlantForm(request.POST, request.FILES)
+        form = NewPlantForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('H_backend:upload_image')
     else:
-        form = PlantForm()
+        form = NewPlantForm()
     return render(request, 'plants/upload_image.html', {'form': form})
 
 def search_images(request):
@@ -28,45 +53,13 @@ def search_images(request):
         results = Plant.objects.all()
     return render(request, 'plants/search_results.html', {'results': results})
 
+@login_required
 def analytics(request):
     # Count the number of plants by family
-    family_counts = Plant.objects.values('family').annotate(total=Count('family')).order_by('-total')
+    family_counts = NewPlant.objects.values('family').annotate(total=Count('family')).order_by('-total')
 
     context = {
         'family_counts': family_counts,
     }
 
     return render(request, 'plants/analytics.html', context)
-
-model = MobileNetV2(weights='imagenet')
-
-def scan_image(request):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Handle the uploaded image
-            image = form.cleaned_data['image']
-            image_path = 'media/' + image.name
-            with open(image_path, 'wb+') as destination:
-                for chunk in image.chunks():
-                    destination.write(chunk)
-            
-            # Preprocess the image for the model
-            img = load_img(image_path, target_size=(224, 224))
-            img_array = img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)
-            img_array = preprocess_input(img_array)
-
-            # Perform inference
-            predictions = model.predict(img_array)
-            decoded_predictions = decode_predictions(predictions, top=3)[0]
-
-            context = {
-                'form': form,
-                'image_url': image_path,
-                'predictions': decoded_predictions,
-            }
-            return render(request, 'plants/scan_results.html', context)
-    else:
-        form = ImageUploadForm()
-    return render(request, 'plants/scan_image.html', {'form': form})

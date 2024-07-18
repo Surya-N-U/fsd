@@ -1,0 +1,17 @@
+{% extends "plants/base.html" %}
+
+{% block title %}Scan Results{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h1 class="mb-4">Scan Results</h1>
+    <img src="{{ image_url }}" alt="Uploaded Image" class="img-fluid mb-4">
+    <h2>Predictions:</h2>
+    <ul>
+        {% for prediction in predictions %}
+            <li>{{ prediction.1 }} ({{ prediction.2|floatformat:2 }}%)</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'H_backend:scan_image' %}" class="btn btn-primary">Scan Another Image</a>
+</div>
+{% endblock %}

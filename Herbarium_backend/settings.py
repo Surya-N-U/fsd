@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Herbarium_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/surya/Projects/Mini-Projects/Herbarium_backend/templates'],
+        'DIRS': ['/home/surya/Projects/Mini-Projects/Herbarium_backend/templates/plants/herbarium_django/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,3 +130,10 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/plants/upload/'
+LOGOUT_REDIRECT_URL = '/'
+
+# If you want to specify the login URL (optional)
+LOGIN_URL = '/accounts/login/'
+
