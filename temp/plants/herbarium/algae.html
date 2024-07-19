@@ -1,0 +1,24 @@
+{%extends 'base_index.html'%}
+{%block title%} Herbarium - Algae {%endblock%}
+{%load static%}
+
+
+{%block content %}
+<section>
+    <h2>Algae Section</h2>
+    <p>
+        Multicellular examples of algae include the giant kelp and brown algae. Unicellular examples include diatoms, Euglenophyta and Dinoflagellates.
+
+Most algae require a moist or watery environment; hence, they are ubiquitous near or inside water bodies. Anatomically, they are similar to another major group of photosynthetic organisms – the land plants. However, that is where the differences end as algae lack many structural components typically present in plants, such as true stems, shoots, and leaves. Furthermore, they also do not have vascular tissues to circulate essential nutrients and water throughout their body.
+    </p>
+    {% for algae in algae_items %}
+    <div class="card">
+        <img src="{{ algae.image.url }}" alt="{{ algae.name }}">
+        <div class="card-text">
+            <h3>Name: {{ algae.name }}</h3>
+            <h3>Family: {{ algae.family }}</h3>
+        </div>
+    </div>
+{% endfor %}
+</section>
+{%endblock%}

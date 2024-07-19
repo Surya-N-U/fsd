@@ -23,13 +23,9 @@ def angiosperms(request):
     angio_items = NewPlant.objects.filter(type='Angiosperms')
     return render(request, 'angiosperms.html', {'angio_items': angio_items})
 
-def bryophytes(request):
-    return render(request, 'bryophytes.html')
-
 def pteridophytes(request):
     pteri_items = NewPlant.objects.filter(type='Pteridophytes')
     return render(request, 'pteridophytes.html', {'pteri_items': pteri_items})
-
 
 
 @login_required

@@ -1,0 +1,35 @@
+{%extends 'base_index.html'%}
+{%block title%} Herbarium - Gymnosperms {%endblock%}
+{%load static%}
+
+
+{%block content %}
+
+
+
+
+<section>
+    <h2>Gymnosperms Section</h2>
+<p>The word “Gymnosperm” comes from the Greek words “gymnos”(naked) and “sperma”(seed), hence known as “Naked seeds.” Gymnosperms are the seed-producing plants, but unlike angiosperms, they produce seeds without fruits. These plants develop on the surface of scales or leaves, or at the end of stalks forming a cone-like structure.
+Gymnosperms are classified into four types as given below –
+<ol>
+<li>Cycadophyta</li>
+<li>Ginkgophyta</li>
+<li>Gnetophyta</li>
+<li>Coniferophyta</li>
+
+</ol>
+</p>           
+{% for gymno in gymno_items %}
+<div class="card">
+    <img src="{{ gymno.image.url }}" alt="{{ gymno.name }}">
+    <div class="card-text">
+        <h3>Name: {{ gymno.name }}</h3>
+        <h3>Family: {{ gymno.family }}</h3>
+    </div>
+</div>
+{% endfor %}
+    </section>
+
+
+{%endblock%}

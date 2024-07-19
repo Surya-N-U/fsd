@@ -1,0 +1,39 @@
+{%block 'base_index.html'%}
+
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%} Herbqriium - Algae {%endblock%}</title>
+    <link rel="stylesheet" href="{%static 'plants/styles.css'%}">
+</head>
+<body>
+    <header>
+        <h1>DIGITAL HERBARIUM</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'H_backend:home' %}">Home</a></li>
+                <li><a href="{% url 'H_backend:algae' %}">Algae</a></li>
+                <li><a href="{% url 'H_backend:pteridophytes' %}">Pteridophytes</a></li>
+                <li><a href="{% url 'H_backend:gymnosperms' %}">Gymnosperms</a></li>
+                <li><a href="{% url 'H_backend:angiosperms' %}">Angiosperms</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 DIGITAL HERBARIUM. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

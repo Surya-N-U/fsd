@@ -1,0 +1,58 @@
+{%extends "base_index.html"%}
+
+{%load static %}
+
+{%block title%}Herbarium {%endblock%}
+
+
+{%block content%}
+
+<h2>About the Herbarium</h2>
+<p>A herbarium is a collection of preserved plant specimens and associated data used for scientific study. These specimens are typically dried, pressed, and mounted on sheets of paper, and may also include information about the plant’s habitat, location, date of collection, and the name of the collector. Herbaria serve as a vital resource for botanists, ecologists, and researchers in various fields of biological science.</p>    
+<div class="content-wrapper">
+    <div class="heading">
+     
+</div>
+    <section id="flippable-cards">
+        <h2> Importance Of Herbaria</h2>
+        <div class="card-flip">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h3>Taxonomic Research</h3>
+                    <p>Herbaria are essential for the study of plant taxonomy and systematics. </p>
+                </div>
+                <div class="card-back">
+                    <p>They provide reference materials for identifying and classifying plants, helping botanists understand plant relationships and evolution.</p>
+               
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="card-flip">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h3>Biodiversity Studies</h3>
+                    <p>By examining specimens from different geographical locations and time periods, researchers can assess biodiversity and track changes in plant populations.</p>
+                </div>
+                <div class="card-back">
+                    <p>This is crucial for conservation efforts and understanding ecological dynamics.</p>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="card-flip">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h3>Historical Records</h3>
+<p>Herbaria serve as historical records of plant distribution and abundance. </p>                    </div>
+                <div class="card-back">
+<p>They offer insights into past environments and climates, helping scientists understand how ecosystems have changed over time.
+                </div>
+            </div>
+        </div>
+        <br/>
+      
+    </section>
+    <script src="{static 'plants/scripts.js'}"></script>
+</div>
+{%endblock%}

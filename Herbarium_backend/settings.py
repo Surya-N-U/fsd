@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Herbarium_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/surya/Projects/Mini-Projects/Herbarium_backend/templates/plants/herbarium_django/'],
+        'DIRS': ['/home/surya/Projects/Mini-Projects/Herbarium_backend/temp/plants/herbarium'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
