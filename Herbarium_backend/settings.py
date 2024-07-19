@@ -55,7 +55,7 @@ ROOT_URLCONF = 'Herbarium_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/surya/Projects/Mini-Projects/Herbarium_backend/temp/plants/herbarium'],
+        'DIRS': ['/Users/sinchanaarun/fsd/fsd/temp/plants/herbarium'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'plants',
-        'USER': 'root',
-        'PASSWORD': 'surya1234',
+        'USER': 'sinchana',
+        'PASSWORD': '2453',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -136,4 +136,3 @@ LOGOUT_REDIRECT_URL = '/'
 
 # If you want to specify the login URL (optional)
 LOGIN_URL = '/accounts/login/'
-

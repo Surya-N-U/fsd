@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Plant(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images/')
@@ -14,7 +16,19 @@ class Plant(models.Model):
 
     def __str__(self):
         return self.name
-    
+
+
+class Algae(models.Model):
+    scientific_name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
+    family = models.CharField(max_length=255)
+    genus = models.CharField(max_length=255)
+    species = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
+    collection_date = models.DateField()
+    collected_by = models.CharField(max_length=255)
+
+
 class NewPlant(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='images255/')
